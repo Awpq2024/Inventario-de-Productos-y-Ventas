@@ -17,29 +17,45 @@ struct Venta{
 
 void registrarProducto(Producto articulo[],int &numeroProducto){
 	if (numeroProducto>=limiteProductos){
-        cout<<"limite de productos alcanzado, no se puede registrar mas productos"<<endl;
+        cout<<"\nlimite de productos alcanzado, no se puede registrar mas productos"<<endl;
         return;
 	}
-	cout<<"Ingrese el nombre del producto: ";
+	cout<<"\nIngrese el nombre del producto: ";
 	cin>>articulo[numeroProducto].nombre;
 	cout<<"Ingrese el precio del producto: ";
 	cin>>articulo[numeroProducto].precio;
+	cout<<"Producto registrado con exito"<<endl;
+	cout<<endl;
 	numeroProducto++;
 }
 
 void registrarVenta(Venta transaccion[], int &numeroVenta, int &idVentaActual){
  	if (numeroVenta>=limiteVentas){
-        cout<<"Limite de ventas alcanzado, no se puede registrar mas Ventas"<<endl;
+        cout<<"\nLimite de ventas alcanzado, no se puede registrar mas Ventas"<<endl;
         return;
     }
 	transaccion[numeroVenta].idVenta=idVentaActual++;
-	cout<<"Introdusca el nombre del producto que fue vendido: ";
+	cout<<"\nIntrodusca el nombre del producto que fue vendido: ";
 	cin>>transaccion[numeroVenta].producto;
 	cout<<"Ingrese la cantidad vendida del producto: ";
 	cin>>transaccion[numeroVenta].cantidad;
 	cout<<"Ingrese el precio total por la venta: ";
 	cin>>transaccion[numeroVenta].precioTotal;
 	numeroVenta++;
+}
+void mostrarProductos(const Producto articulo[],int numeroProducto){
+	if(numeroProducto==0){
+		cout<<"\nNo hay productos que hayan sido registrado de momento"<<endl;
+		cout<<endl;
+	}else{
+		cout<<"\nLista de productos registrados: "<<endl;
+		for(int i=0;i<numeroProducto;i++){
+			cout<<"Producto numero "<<(i+1)<<": "<<endl;
+			cout<<"Nombre del producto: "<<articulo[i].nombre<<endl;
+			cout<<"Precio del producto: "<<articulo[i].precio<<endl;
+			cout<<endl;
+		}
+	}
 }
 
 int main(){
@@ -53,7 +69,8 @@ int main(){
 		cout<<"Menu de inventario y ventas"<<endl;
 		cout<<"1. Registrar un nuevo producto"<<endl;
 		cout<<"2. Registrar una venta"<<endl;
-		cout<<"3. Salir del programa"<<endl;
+		cout<<"3. Mostrar la lista de productos registrados"<<endl;
+		cout<<"4. Salir del programa"<<endl;
 		cout<<"Seleccione una opcion: ";
 		cin>>opcion;
 		switch (opcion){
@@ -64,12 +81,15 @@ int main(){
 				registrarVenta(transaccion, numeroVenta, idVentaActual);
 				break;
 			case 3:
+				mostrarProductos(articulo, numeroProducto);
+				break;
+			case 4:
 				cout<<"Saliendo del programa...";
 				break;
 			default:
 				cout<<"Opcion no valida, seleccione una opcion del 1 al 3."<<endl;
 				break;
 		}
-	}while(opcion!=3);
+	}while(opcion!=4);
 	return 0;
 }
