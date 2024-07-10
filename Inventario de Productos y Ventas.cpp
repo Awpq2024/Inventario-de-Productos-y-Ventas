@@ -108,6 +108,21 @@ void buscarProducto(const Producto articulo[], int numeroProducto){
 	cout<<endl;
 	
 }
+void mostrarVentas(const Venta transaccion[],int numeroVenta){
+	if(numeroVenta==0){
+		cout<<"\nNo hay ventas registradas de momento"<<endl;
+		cout<<endl;
+	}else{
+		cout<<"\nVentas registradas: "<<endl;
+		for (int i=0;i<numeroVenta;i++){
+			cout<<"ID de la venta: "<<transaccion[i].idVenta<<endl;
+			cout<<"Producto vendido: "<<transaccion[i].producto<<endl;
+			cout<<"Cantidad vendidad del producto: "<<transaccion[i].cantidad<<endl;
+			cout<<"Precio total: "<<transaccion[i].precioTotal<<endl;
+			cout<<endl;
+		}
+	}
+}
 
 int main(){
 	Producto articulo[limiteProductos];
@@ -123,7 +138,8 @@ int main(){
 		cout<<"3. Mostrar la lista de productos registrados"<<endl;
 		cout<<"4. Eliminar un producto"<<endl;
 		cout<<"5. Buscar un producto por su nombre"<<endl;
-		cout<<"6. Salir del programa"<<endl;
+		cout<<"6. Mostrar lista de ventas registradas"<<endl;
+		cout<<"7. Salir del programa"<<endl;
 		cout<<"Seleccione una opcion: ";
 		cin>>opcion;
 		switch (opcion){
@@ -143,12 +159,15 @@ int main(){
 				buscarProducto(articulo,numeroProducto);
 				break;
 			case 6:
+				mostrarVentas(transaccion,numeroVenta);
+				break;
+			case 7:
 				cout<<"Saliendo del programa...";
 				break;
 			default:
 				cout<<"Opcion no valida, seleccione una opcion del 1 al 3."<<endl;
 				break;
 		}
-	}while(opcion!=6);
+	}while(opcion!=7);
 	return 0;
 }
