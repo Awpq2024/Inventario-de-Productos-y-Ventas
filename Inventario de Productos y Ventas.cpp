@@ -85,7 +85,29 @@ void eliminarProducto(Producto articulo[], int &numeroProducto){
 	cout<<"El producto fue eliminado"<<endl;
 	cout<<endl;
 }
-
+void buscarProducto(const Producto articulo[], int numeroProducto){
+	if(numeroProducto==0){
+		cout<<"Aun no se ha registrado productos de momento"<<endl;
+		cout<<endl;
+		return;
+	}
+	string nombreProducto;
+	cout<<"Ingrese el nombre del producto que quiere buscar: ";
+	cin>>nombreProducto;
+	
+	for(int i=0;i<numeroProducto;i++){
+		if(articulo[i].nombre==nombreProducto){
+			cout<<"\nEl producto encontrado es: "<<endl;
+			cout<<"Nombre del producto: "<<articulo[i].nombre<<endl;
+			cout<<"Precio del producto: "<<articulo[i].precio<<endl;
+			cout<<endl;
+			return;
+		}
+	}
+	cout<<"El nombre ingresdo del producto no se encuentra registrado"<<endl;
+	cout<<endl;
+	
+}
 
 int main(){
 	Producto articulo[limiteProductos];
@@ -100,7 +122,8 @@ int main(){
 		cout<<"2. Registrar una venta"<<endl;
 		cout<<"3. Mostrar la lista de productos registrados"<<endl;
 		cout<<"4. Eliminar un producto"<<endl;
-		cout<<"5. Salir del programa"<<endl;
+		cout<<"5. Buscar un producto por su nombre"<<endl;
+		cout<<"6. Salir del programa"<<endl;
 		cout<<"Seleccione una opcion: ";
 		cin>>opcion;
 		switch (opcion){
@@ -117,12 +140,15 @@ int main(){
 				eliminarProducto(articulo,numeroProducto);
 				break;
 			case 5:
+				buscarProducto(articulo,numeroProducto);
+				break;
+			case 6:
 				cout<<"Saliendo del programa...";
 				break;
 			default:
 				cout<<"Opcion no valida, seleccione una opcion del 1 al 3."<<endl;
 				break;
 		}
-	}while(opcion!=5);
+	}while(opcion!=6);
 	return 0;
 }
