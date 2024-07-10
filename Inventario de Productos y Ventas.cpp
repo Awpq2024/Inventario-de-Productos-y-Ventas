@@ -150,6 +150,19 @@ void actualizarProducto(Producto articulo[],int numeroProducto){
 	cout<<"El producto ingresado no fue encontrado"<<endl;
 	cout<<endl;
 }
+void calcularTotalVentas(const Venta transaccion[], int numeroVenta) {
+    if (numeroVenta==0) {
+        cout<<"\nNo se han registrado ventas de momento"<<endl;
+        cout<<endl;
+    }else{
+        float total=0;
+        for(int i=0;i<numeroVenta;i++){
+            total+=transaccion[i].precioTotal;
+        }
+        cout<<"\nEl total de ventas realizadas es: "<<total<<endl;
+        cout<<endl;
+    }
+}
 
 int main(){
 	Producto articulo[limiteProductos];
@@ -167,7 +180,8 @@ int main(){
 		cout<<"5. Buscar un producto por su nombre"<<endl;
 		cout<<"6. Mostrar lista de ventas registradas"<<endl;
 		cout<<"7. Actualizar un producto registrado"<<endl;
-		cout<<"8. Salir del programa"<<endl;
+		cout<<"8. Calcular el total de ventas registradas"<<endl;
+		cout<<"9. Salir del programa"<<endl;
 		cout<<"Seleccione una opcion: ";
 		cin>>opcion;
 		switch (opcion){
@@ -193,12 +207,15 @@ int main(){
 				actualizarProducto(articulo,numeroProducto);
 				break;
 			case 8:
+				calcularTotalVentas(transaccion,numeroVenta);
+				break;
+			case 9:
 				cout<<"Saliendo del programa...";
 				break;
 			default:
-				cout<<"Opcion no valida, seleccione una opcion del 1 al 3."<<endl;
+				cout<<"Opcion no valida, seleccione una opcion del 1 al 9."<<endl;
 				break;
 		}
-	}while(opcion!=8);
+	}while(opcion!=9);
 	return 0;
 }
